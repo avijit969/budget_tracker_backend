@@ -1,0 +1,23 @@
+{
+  "name": "budegt_tracker",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.6.0",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.40.1",
+    "hono": "^4.7.5"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250214.0",
+    "add": "^2.0.6",
+    "bun": "^1.2.5",
+    "drizzle-kit": "^0.30.5",
+    "tsx": "^4.19.3",
+    "wrangler": "^3.109.2"
+  }
+}

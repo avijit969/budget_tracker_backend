@@ -1,0 +1,44 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "budegt_tracker",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-03-20"
+  // "compatibility_flags": [
+  //   "nodejs_compat"
+  // ]
+  ,
+  "vars": {
+    "DATABASE_URL": "postgresql://tbt_owner:npg_tF3NCVHGILO4@ep-still-tooth-a1elynzk-pooler.ap-southeast-1.aws.neon.tech/tbt?sslmode=require",
+    "ACCESS_TOKEN_EXPIRY": "10d",
+    "ACCESS_TOKEN_SECRET": "iamaking",
+    "CLOUDINARY_CLOUD_NAME": "dr67ekdtl",
+    "CLOUDINARY_API_KEY": "476891791837525",
+    "CLOUDINARY_API_SECRET": "F99UQJl29CgNpUFNjSBhd26_o-o"
+  }
+  // "kv_namespaces": [
+  //   {
+  //     "binding": "MY_KV_NAMESPACE",
+  //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  //   }
+  // ],
+  // "r2_buckets": [
+  //   {
+  //     "binding": "MY_BUCKET",
+  //     "bucket_name": "my-bucket"
+  //   }
+  // ],
+  // "d1_databases": [
+  //   {
+  //     "binding": "MY_DB",
+  //     "database_name": "my-database",
+  //     "database_id": ""
+  //   }
+  // ],
+  // "ai": {
+  //   "binding": "AI"
+  // },
+  // "observability": {
+  //   "enabled": true,
+  //   "head_sampling_rate": 1
+  // }
+}
