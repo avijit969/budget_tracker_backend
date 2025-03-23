@@ -38,14 +38,32 @@ bun run dev
 bun run deploy
 ```
 
-## 📝 License
+## Api Endpoints
 
-This project is released under the [MIT License](LICENSE).
+### Endpoints for trips
 
-## 📚 Credits
+| Endpoint               | Method | Description                     |
+| ---------------------- | ------ | ------------------------------- |
+| `/api/trip`            | POST   | Create a new trip.              |
+| `/api/trip`            | GET    | Get all trips.                  |
+| `/api/trip/:id`        | GET    | Get a specific trip by ID.      |
+| `/api/trip/:id`        | PUT    | Update a specific trip by ID.   |
+| `/api/trip/:id`        | DELETE | Delete a specific trip by ID.   |
+| `/api/trip/:id/invite` | POST   | Invite a friend to a trip.      |
+| `/api/trip/:id/accept` | POST   | Accept an invitation to a trip. |
+| `/api/trip/:id/reject` | POST   | Reject an invitation to a trip. |
+| `/api/trip/:id/leave`  | POST   | Leave a trip.                   |
+| `/api/trip/:id/delete` | POST   | Delete a trip.                  |
+| `/api/trip/allmembers` | GET    | Get all members of a trip.      |
 
-- [Bun](https://bun.sh/)
-- [Hono](https://hono.dev/)
-- [Drizzle](https://drizzle-orm.com/)
-- [Cloudinary](https://cloudinary.com/)
-- [Neon](https://neon.tech/)
+### Endpoints for users
+
+| Endpoint            | Method | Description                            | Body                                                                      |
+| ------------------- | ------ | -------------------------------------- | ------------------------------------------------------------------------- |
+| `/api/user`         | POST   | Create a new user.                     | username, email, password                                                 |
+| `/api/user/login`   | POST   | Log in a user.                         | username, password                                                        |
+| `/api/user/logout`  | POST   | Log out a user.                        | authorization header Bearer token                                         |
+| `/api/user`         | GET    | Get a specific user by ID.             | authorization header Bearer token                                         |
+| `/api/user/avatar`  | PATCH  | Update a specific user's avatar by ID. | authorization header Bearer token, avatar file                            |
+| `/api/user/profile` | PATCH  | Update a specific user by ID.          | authorization header Bearer token and username,email,fullname,avatar file |
+| `/api/user`         | DELETE | Delete a specific user by ID.          | authorization header Bearer token                                         |

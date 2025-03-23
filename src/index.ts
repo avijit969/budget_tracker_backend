@@ -27,6 +27,6 @@ app.get("/", (c) => {
 </html>`);
 });
 
-app.route("/user", userRouter);
-app.route("/trip", tripRouter);
+app.route("/api/user", userRouter);
+app.route("/api/trip", tripRouter);
 export default app;

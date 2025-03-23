@@ -279,7 +279,11 @@ const acceptTrip = async (c: Context) => {
       .update(tripMembers)
       .set({ status: "accepted" })
       .where(
-        and(eq(tripMembers.tripId, tripId), eq(tripMembers.userId, userId))
+        and(
+          eq(tripMembers.tripId, tripId),
+          eq(tripMembers.userId, userId),
+          eq(tripMembers.status, "pending")
+        )
       )
       .returning({
         id: tripMembers.id,
@@ -288,7 +292,12 @@ const acceptTrip = async (c: Context) => {
         status: tripMembers.status,
       })
       .execute();
-
+    if (!invitation[0]) {
+      return c.json(
+        { message: "Invitation not found or already accepted" },
+        404
+      );
+    }
     return c.json(
       {
         message: "Invitation accepted successfully",
@@ -338,7 +347,10 @@ const rejectTrip = async (c: Context) => {
       })
       .execute();
     if (invitation.length === 0) {
-      return c.json({ message: "Invitation not found" }, 404);
+      return c.json(
+        { message: "Invitation not found or already accepted" },
+        404
+      );
     }
     return c.json(
       {
@@ -441,7 +453,23 @@ const leaveTrip = async (c: Context) => {
     return c.json({ message: "Server error", error: error.message }, 500);
   }
 };
-
+const getAllMembers = async (c: Context) => {
+  try {
+    const db = getDb(c);
+    const tripId = Number(c.req.param("id"));
+    if (!tripId) {
+      return c.json({ message: "Trip id is required in url" }, 400);
+    }
+    const members = await db
+      .select()
+      .from(tripMembers)
+      .where(eq(tripMembers.tripId, tripId))
+      .execute();
+    return c.json({ message: "Members", data: members }, 200);
+  } catch (error: any) {
+    return c.json({ message: "Server error", error: error.message }, 500);
+  }
+};
 export {
   createTrip,
   getAllTrips,
@@ -452,4 +480,5 @@ export {
   rejectTrip,
   leaveTrip,
   deleteTrip,
+  getAllMembers,
 };

@@ -144,15 +144,25 @@ const updateUser = async (c: Context) => {
         )
       )
       .execute();
-
     if (existingUser.length > 0) {
       return c.json(
         { message: "User already exists with username or email", status: 400 },
         400
       );
     }
+    // extract old avatar url
+    const userData = await db
+      .select({
+        avatar: users.avatar,
+        username: users.username,
+        email: users.email,
+      })
+      .from(users)
+      .where(eq(users.id, id))
+      .execute();
+
     // upload avatar on cloudinary
-    let avatarUrl = "";
+    let avatarUrl = userData[0].avatar;
     if (avatar) {
       const result = await uploadOnCloudinary(avatar as File);
       if (!result) {
@@ -169,7 +179,13 @@ const updateUser = async (c: Context) => {
         avatar: avatarUrl,
       })
       .where(eq(users.id, id))
-      .returning()
+      .returning({
+        id: users.id,
+        username: users.username,
+        email: users.email,
+        avatar: users.avatar,
+        fullname: users.fullname,
+      })
       .execute();
 
     return c.json({

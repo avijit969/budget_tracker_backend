@@ -10,10 +10,7 @@
   "vars": {
     "DATABASE_URL": "postgresql://tbt_owner:npg_tF3NCVHGILO4@ep-still-tooth-a1elynzk-pooler.ap-southeast-1.aws.neon.tech/tbt?sslmode=require",
     "ACCESS_TOKEN_EXPIRY": "10d",
-    "ACCESS_TOKEN_SECRET": "iamaking",
-    "CLOUDINARY_CLOUD_NAME": "dr67ekdtl",
-    "CLOUDINARY_API_KEY": "476891791837525",
-    "CLOUDINARY_API_SECRET": "F99UQJl29CgNpUFNjSBhd26_o-o"
+    "ACCESS_TOKEN_SECRET": "iamaking"
   }
   // "kv_namespaces": [
   //   {

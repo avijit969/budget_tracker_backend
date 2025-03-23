@@ -3,6 +3,7 @@ import {
   acceptTrip,
   createTrip,
   deleteTrip,
+  getAllMembers,
   getAllTrips,
   getTripById,
   inviteTrip,
@@ -14,14 +15,14 @@ import { verifyJwt } from "../helpers/verifyJwt";
 
 const tripRouter = new Hono();
 
-tripRouter.post("/create-trip", verifyJwt, createTrip);
-tripRouter.get("/get-all-trips", verifyJwt, getAllTrips);
-tripRouter.get("/get-trip/:id", verifyJwt, getTripById);
-tripRouter.patch("/update-trip/:id", verifyJwt, updateTrip);
-tripRouter.post("/invite-trip/:id", verifyJwt, inviteTrip);
-tripRouter.post("/accept-trip/:id", verifyJwt, acceptTrip);
-tripRouter.post("/reject-trip/:id", verifyJwt, rejectTrip);
-tripRouter.delete("/leave-trip/:id", verifyJwt, leaveTrip);
-tripRouter.delete("/delete-trip/:id", verifyJwt, deleteTrip);
-
+tripRouter.post("/", verifyJwt, createTrip);
+tripRouter.get("/", verifyJwt, getAllTrips);
+tripRouter.get("/:id", verifyJwt, getTripById);
+tripRouter.patch("/:id", verifyJwt, updateTrip);
+tripRouter.post("/:id/invite", verifyJwt, inviteTrip);
+tripRouter.post("/:id/accept", verifyJwt, acceptTrip);
+tripRouter.post("/:id/reject", verifyJwt, rejectTrip);
+tripRouter.get("/get-all-members/:id", verifyJwt, getAllMembers);
+tripRouter.delete("/:id/leave", verifyJwt, leaveTrip);
+tripRouter.delete("/:id", verifyJwt, deleteTrip);
 export default tripRouter;
